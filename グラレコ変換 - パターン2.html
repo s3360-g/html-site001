@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロジェクトナレッジ - グラフィックレコーディング</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Yomogi&family=Zen+Kurenaido&family=Kaisei+Decol:wght@400;700&display=swap');
+        
+        :root {
+            --fashion-1: #593C47;
+            --fashion-2: #F2E63D;
+            --fashion-3: #F2C53D;
+            --fashion-4: #F25C05;
+            --fashion-5: #F24405;
+            --title-color: #333333;
+            --subtitle-color: #475569;
+            --section-color: #1e40af;
+            --text-color: #334155;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Kaisei Decol', serif;
+            background-color: var(--bg-color);
+            line-height: 1.4;
+            color: var(--text-color);
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23593c47' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-bottom: 3px solid var(--fashion-1);
+            position: relative;
+        }
+        
+        .header:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--fashion-3);
+            border-radius: 50%;
+        }
+        
+        .title {
+            font-family: 'Yomogi', cursive;
+            font-size: 32px;
+            font-weight: bold;
+            background: linear-gradient(to right, var(--fashion-1), var(--fashion-5));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .title:after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='3' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,1.5 C5,0.5 10,2.5 15,1.5 C20,0.5 25,2.5 30,1.5 C35,0.5 40,2.5 45,1.5 C50,0.5 55,2.5 60,1.5 C65,0.5 70,2.5 75,1.5 C80,0.5 85,2.5 90,1.5 C95,0.5 100,2.5 105,1.5' stroke='%23F25C05' fill='none' stroke-width='2'/%3E%3C/svg%3E") repeat-x;
+            background-size: 100px 3px;
+        }
+        
+        .date {
+            font-family: 'Zen Kurenaido', sans-serif;
+            font-size: 16px;
+            color: var(--subtitle-color);
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 10px;
+        }
+        
+        .column {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        
+        .card:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--fashion-2), var(--fashion-4));
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .section-title {
+            font-family: 'Zen Kurenaido', sans-serif;
+            font-size: 18px;
+            color: var(--section-color);
+            margin-bottom: 15px;
+            padding-left: 28px;
+            position: relative;
+        }
+        
+        .section-title:before {
+            content: "✏️";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .subtitle {
+            font-family: 'Zen Kurenaido', sans-serif;
+            font-size: 16px;
+            color: var(--subtitle-color);
+            margin-bottom: 10px;
+        }
+        
+        .text {
+            font-size: 14px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            background: linear-gradient(transparent 60%, var(--fashion-2) 40%);
+            font-weight: bold;
+            padding: 0 2px;
+        }
+        
+        .keyword {
+            color: var(--fashion-5);
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .keyword:after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--fashion-5);
+            border-radius: 1px;
+        }
+        
+        .list {
+            margin-left: 20px;
+            margin-bottom: 15px;
+            list-style-type: none;
+        }
+        
+        .list-item {
+            position: relative;
+            padding-left: 22px;
+            margin-bottom: 8px;
+        }
+        
+        .list-item:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--fashion-4);
+            font-weight: bold;
+        }
+        
+        .bubble {
+            background-color: rgba(242, 230, 61, 0.2);
+            border: 2px solid var(--fashion-3);
+            border-radius: 20px;
+            padding: 10px 15px;
+            margin: 10px 0;
+            position: relative;
+        }
+        
+        .bubble:before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            border-width: 0 10px 10px;
+            border-style: solid;
+            border-color: transparent transparent var(--fashion-3) transparent;
+        }
+        
+        .icon-group {
+            display: flex;
+            justify-content: space-around;
+            margin: 15px 0;
+        }
+        
+        .icon-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 70px;
+        }
+        
+        .icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .icon-text {
+            font-size: 12px;
+        }
+        
+        .arrow {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 24px;
+            color: var(--fashion-4);
+        }
+        
+        .glass-card {
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .footer {
+            text-align: right;
+            padding: 20px;
+            margin-top: 30px;
+            border-top: 1px dashed var(--fashion-1);
+            font-family: 'Zen Kurenaido', sans-serif;
+            font-size: 14px;
+            color: var(--subtitle-color);
+        }
+        
+        /* 手描き風の要素 */
+        .hand-drawn {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hand-drawn:after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='2' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,1 C5,0.5 10,1.5 15,1 C20,0.5 25,1.5 30,1 C35,0.5 40,1.5 45,1 C50,0.5 55,1.5 60,1 C65,0.5 70,1.5 75,1 C80,0.5 85,1.5 90,1 C95,0.5 100,1.5 105,1' stroke='%23F2C53D' fill='none' stroke-width='2'/%3E%3C/svg%3E") repeat-x;
+            background-size: 100px 2px;
+        }
+        
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .column {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">プロジェクトナレッジ</h1>
+            <div class="date">2025年3月22日</div>
+        </header>
+        
+        <div class="content">
+            <!-- 左カラム -->
+            <div class="column">
+                <div class="card">
+                    <h2 class="section-title">目的</h2>
+                    <p class="text">
+                        <span class="highlight">超一流デザイナー</span>が作成したような、日本語で完璧な<span class="keyword">グラフィックレコーディング風</span>のHTMLインフォグラフィックに変換する。
+                    </p>
+                    <div class="bubble">
+                        情報設計とビジュアルデザインの両面で最高水準を目指します！
+                    </div>
+                    <p class="text">
+                        手書き風の図形やアイコンを活用して内容を視覚的に表現します。
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <h2 class="section-title">カラースキーム</h2>
+                    <div style="display: flex; margin: 15px 0;">
+                        <div style="width: 40px; height: 40px; background-color: #593C47; border-radius: 50%; margin-right: 10px;"></div>
+                        <div style="width: 40px; height: 40px; background-color: #F2E63D; border-radius: 50%; margin-right: 10px;"></div>
+                        <div style="width: 40px; height: 40px; background-color: #F2C53D; border-radius: 50%; margin-right: 10px;"></div>
+                        <div style="width: 40px; height: 40px; background-color: #F25C05; border-radius: 50%; margin-right: 10px;"></div>
+                        <div style="width: 40px; height: 40px; background-color: #F24405; border-radius: 50%;"></div>
+                    </div>
+                    <ul class="list">
+                        <li class="list-item">ファッション-1: #593C47</li>
+                        <li class="list-item">ファッション-2: #F2E63D</li>
+                        <li class="list-item">ファッション-3: #F2C53D</li>
+                        <li class="list-item">ファッション-4: #F25C05</li>
+                        <li class="list-item">ファッション-5: #F24405</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h2 class="section-title">タイポグラフィ</h2>
+                    <div class="glass-card">
+                        <p class="text" style="font-size: 32px; background: linear-gradient(to right, var(--fashion-1), var(--fashion-5)); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: bold;">タイトル 32px</p>
+                        <p class="text" style="font-size: 16px; color: #475569;">サブタイトル 16px #475569</p>
+                        <p class="text" style="font-size: 18px; color: #1e40af;">📌 セクション見出し 18px #1e40af</p>
+                        <p class="text" style="font-size: 14px; color: #334155; line-height: 1.4;">本文 14px #334155 行間1.4</p>
+                    </div>
+                    <div class="icon-group">
+                        <div class="icon-item">
+                            <div class="icon">文</div>
+                            <div class="icon-text">Yomogi</div>
+                        </div>
+                        <div class="icon-item">
+                            <div class="icon">文</div>
+                            <div class="icon-text">Zen Kurenaido</div>
+                        </div>
+                        <div class="icon-item">
+                            <div class="icon">文</div>
+                            <div class="icon-text">Kaisei Decol</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 中央カラム -->
+            <div class="column">
+                <div class="card">
+                    <h2 class="section-title">グラフィックレコーディング要素</h2>
+                    <ul class="list">
+                        <li class="list-item">左上から右へ、上から下へと情報を順次配置</li>
+                        <li class="list-item">日本語の<span class="highlight">手書き風</span>フォントの使用</li>
+                        <li class="list-item">手描き風の囲み線、矢印、バナー、吹き出し</li>
+                        <li class="list-item">テキストと視覚要素（アイコン、シンプルな図形）の組み合わせ</li>
+                        <li class="list-item">キーワードの強調（色付き下線、マーカー効果）</li>
+                        <li class="list-item">関連する概念を線や矢印で接続</li>
+                        <li class="list-item">絵文字やアイコンを効果的に配置 😊 📊 💡</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h2 class="section-title">レイアウト</h2>
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <div style="flex: 1; height: 40px; background-color: rgba(89, 60, 71, 0.2); border: 1px dashed #593C47; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
+                            ヘッダー
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                        <div style="flex: 1; height: 100px; background-color: rgba(242, 230, 61, 0.2); border: 1px dashed #F2E63D; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
+                            左33%
+                        </div>
+                        <div style="flex: 1; height: 100px; background-color: rgba(242, 196, 61, 0.2); border: 1px dashed #F2C53D; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
+                            中央33%
+                        </div>
+                        <div style="flex: 1; height: 100px; background-color: rgba(242, 92, 5, 0.2); border: 1px dashed #F25C05; display: flex; align-items: center; justify-content: center; border-radius: 5px;">
+                            右33%
+                        </div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    <div style="background-color: white; border-radius: 12px; padding: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-top: 10px; text-align: center;">
+                        カード型コンポーネント
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="section-title">グラフィックレコーディング表現技法</h2>
+                    <div style="display: flex; justify-content: center; margin: 15px 0;">
+                        <div style="text-align: center; margin: 0 10px;">
+                            <div style="font-size: 24px;">📝</div>
+                            <div style="font-size: 12px;">テキスト</div>
+                        </div>
+                        <div style="text-align: center; margin: 0 10px;">
+                            <div style="font-size: 24px;">+</div>
+                        </div>
+                        <div style="text-align: center; margin: 0 10px;">
+                            <div style="font-size: 24px;">🖼️</div>
+                            <div style="font-size: 12px;">視覚要素</div>
+                        </div>
+                        <div style="text-align: center; margin: 0 10px;">
+                            <div style="font-size: 24px;">=</div>
+                        </div>
+                        <div style="text-align: center; margin: 0 10px;">
+                            <div style="font-size: 24px;">💫</div>
+                            <div style="font-size: 12px;">効果的表現</div>
+                        </div>
+                    </div>
+                    <ul class="list">
+                        <li class="list-item">テキストと視覚要素のバランスを重視</li>
+                        <li class="list-item">キーワードを囲み線や色で強調</li>
+                        <li class="list-item">簡易的なアイコンや図形で概念を視覚化</li>
+                        <li class="list-item">数値データは簡潔なグラフや図表で表現</li>
+                        <li class="list-item">接続線や矢印で情報間の関係性を明示</li>
+                        <li class="list-item">余白を効果的に活用して視認性を確保</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 右カラム -->
+            <div class="column">
+                <div class="card">
+                    <h2 class="section-title">全体的な指針</h2>
+                    <div class="glass-card">
+                        <p class="text">
+                            <span class="hand-drawn">読み手が自然に視線を移動できる配置</span>
+                        </p>
+                        <div class="arrow">↓</div>
+                        <p class="text">
+                            <span class="hand-drawn">情報の階層と関連性を視覚的に明確化</span>
+                        </p>
+                        <div class="arrow">↓</div>
+                        <p class="text">
+                            <span class="hand-drawn">手書き風の要素で親しみやすさを演出</span>
+                        </p>
+                        <div class="arrow">↓</div>
+                        <p class="text">
+                            <span class="hand-drawn">視覚的な記憶に残るデザイン</span>
+                        </p>
+                        <div class="arrow">↓</div>
+                        <p class="text">
+                            <span class="hand-drawn">フッターに出典情報を明記</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="section-title">実装のポイント</h2>
+                    <div class="bubble">
+                        グラフィックレコーディングの要素を効果的に取り入れよう！
+                    </div>
+                    <p class="text">
+                        <span class="keyword">手書き風表現</span>のために、線にゆらぎを与える、フォントにかすれを入れるなどの工夫をします。
+                    </p>
+                    <div style="display: flex; justify-content: center; margin: 15px 0;">
+                        <div style="text-align: center; border: 2px solid var(--fashion-3); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; margin: 0 10px; font-size: 24px; background: rgba(242, 196, 61, 0.1);">
+                            💡
+                        </div>
+                        <div style="text-align: center; border: 2px solid var(--fashion-4); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; margin: 0 10px; font-size: 24px; background: rgba(242, 92, 5, 0.1);">
+                            ✏️
+                        </div>
+                        <div style="text-align: center; border: 2px solid var(--fashion-5); border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; margin: 0 10px; font-size: 24px; background: rgba(242, 68, 5, 0.1);">
+                            🎨
+                        </div>
+                    </div>
+                    <p class="text">
+                        <span class="highlight">視覚的階層構造</span>を作り出し、情報の重要度を瞬時に把握できるようにします。
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <h2 class="section-title">まとめ</h2>
+                    <div style="background: rgba(242, 230, 61, 0.1); border-radius: 12px; padding: 15px; border-left: 5px solid var(--fashion-2); margin: 15px 0;">
+                        <p class="text" style="font-weight: bold;">
+                            グラフィックレコーディング風のインフォグラフィックは、情報を視覚的に整理し、記憶に残りやすくします。
+                        </p>
+                    </div>
+                    <p class="text">
+                        <span class="hand-drawn">手書き風の温かみ</span>と<span class="hand-drawn">デジタルの明瞭さ</span>を融合させて、効果的な情報伝達を実現しましょう。
+                    </p>
+                    <div style="text-align: center; margin-top: 15px;">
+                        <div style="display: inline-block; transform: rotate(-5deg); background-color: var(--fashion-3); color: var(--fashion-1); padding: 5px 15px; border-radius: 5px; font-weight: bold; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
+                            情報✕デザイン＝インフォグラフィック
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="footer">
+            出典: プロジェクトナレッジ資料 © 2025
+        </footer>
+    </div>
+</body>
+</html>
