@@ -1,109 +1,95 @@
-/* 全体のリセットとベーススタイル */
+/* 基本スタイル設定 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* 基本的なボディスタイル */
+/* ボディ全体のスタイル */
 body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
     line-height: 1.6;
     color: #333;
-    background-color: #f8f9fa;
-    padding: 20px;
-    max-width: 1200px;
+    background-color: #f7f7f7;
+}
+
+/* コンテナのスタイル - ページコンテンツを中央に配置 */
+.container {
+    max-width: 800px;
     margin: 0 auto;
-}
-
-/* ヘッダースタイル */
-header {
-    background-color: #4a6fa5;
-    color: white;
     padding: 20px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
 }
 
-/* 見出しスタイル */
+/* ヘッダー部分のスタイル */
+header {
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 30px;
+}
+
+/* 見出しのスタイル */
 h1 {
-    font-size: 2em;
+    font-size: 28px;
+    color: #2c3e50;
     margin-bottom: 10px;
 }
 
 h2 {
-    font-size: 1.5em;
-    color: #4a6fa5;
-    margin: 20px 0 15px 0;
-    border-bottom: 2px solid #e0e0e0;
+    font-size: 22px;
+    color: #3498db;
+    margin: 20px 0 15px;
     padding-bottom: 5px;
+    border-bottom: 2px solid #f0f0f0;
 }
 
-/* セクションスタイル */
-section {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-/* 段落スタイル */
+/* 段落のスタイル */
 p {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-/* リストスタイル */
+/* ファイルリストのスタイル */
+.file-list {
+    margin: 30px 0;
+}
+
+/* リストのスタイル */
 ul {
     list-style-type: none;
     padding-left: 20px;
 }
 
-/* リストアイテムが追加されたときのスタイル */
-ul li {
-    margin-bottom: 10px;
-    padding: 5px;
-    border-bottom: 1px solid #f0f0f0;
+li {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
 }
 
-/* リンクスタイル */
+li:hover {
+    background-color: #f5f5f5;
+}
+
+/* リンクのスタイル */
 a {
-    color: #4a6fa5;
+    color: #3498db;
     text-decoration: none;
     transition: color 0.3s;
 }
 
 a:hover {
-    color: #2c4162;
+    color: #2980b9;
     text-decoration: underline;
 }
 
-/* フッタースタイル */
+/* フッター部分のスタイル */
 footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
     text-align: center;
-    font-size: 0.9em;
+    font-size: 14px;
     color: #777;
-    margin-top: 30px;
-    padding-top: 10px;
-    border-top: 1px solid #e0e0e0;
-}
-
-/* レスポンシブデザイン */
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-    
-    header, section {
-        padding: 15px;
-    }
-    
-    h1 {
-        font-size: 1.8em;
-    }
-    
-    h2 {
-        font-size: 1.3em;
-    }
 }
